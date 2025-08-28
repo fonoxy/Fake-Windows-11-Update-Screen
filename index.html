@@ -22,10 +22,26 @@
     <h2 class="contrast-el">Please keep your computer on.</h2>
 
     <!-- script time -->
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    // Try auto fullscreen (may fail silently in some browsers)
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+    }
+
+    // Fallback: if blocked, go fullscreen on first click/tap
+    document.addEventListener("click", () => {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+        }
+    }, { once: true });
+});
+</script>
 
     <script src="src/spinner.js"></script>
     <script src="src/percent.js"></script>
     <script src="src/trap.js"></script>
 </body>
+
 
 </html>
